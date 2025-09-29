@@ -3,12 +3,12 @@
 ```mermaid
 flowchart TD
   Client[Client]
-  App[app.main\n(FastAPI)]
-  Routes[Routes\n(/users, /health)]
-  Controller[Controller\n(UserController)]
-  Service[Service\n(UserService)]
-  Repository[Repository\n(UserRepository - in-memory)]
-  Models[Models\n(Pydantic DTOs)]
+  App[app.main FastAPI]
+  Routes[Routes /users /health]
+  Controller[Controller UserController]
+  Service[Service UserService]
+  Repository[Repository UserRepository - in-memory]
+  Models[Models Pydantic DTOs]
   DB[(Data store)]
 
   Client --> App
@@ -16,8 +16,12 @@ flowchart TD
   Routes --> Controller
   Controller --> Service
   Service --> Repository
-  Repository --> Models
   Repository --> DB
+
+  Routes -.-> Models
+  Controller -.-> Models
+  Service -.-> Models
+  Repository -.-> Models
 ```
 
 **Legend (minimal)**
