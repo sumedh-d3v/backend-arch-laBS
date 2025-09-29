@@ -1,14 +1,16 @@
 # Layered FastAPI — Diagram
 
+
+
 ```mermaid
 flowchart TD
   Client[Client]
-  App[app.main\n(FastAPI)]
-  Routes[Routes\n(/users, /health)]
-  Controller[Controller\n(UserController)]
-  Service[Service\n(UserService)]
-  Repository[Repository\n(UserRepository - in-memory)]
-  Models[Models\n(Pydantic DTOs)]
+  App[app.main<br/>(FastAPI)]
+  Routes[Routes<br/>(/users, /health)]
+  Controller[Controller<br/>(UserController)]
+  Service[Service<br/>(UserService)]
+  Repository[Repository<br/>(UserRepository - in-memory)]
+  Models[Models<br/>(Pydantic DTOs)]
   DB[(Data store)]
 
   Client --> App
@@ -16,9 +18,14 @@ flowchart TD
   Routes --> Controller
   Controller --> Service
   Service --> Repository
-  Repository --> Models
   Repository --> DB
+
+  Routes -.-> Models
+  Controller -.-> Models
+  Service -.-> Models
+  Repository -.-> Models
 ```
+
 
 **Legend (minimal)**
 
@@ -27,3 +34,4 @@ flowchart TD
 * **Service**: Business rules and orchestration.
 * **Repository**: Data access (swap for real DB later).
 * **Models**: Pydantic request/response DTOs.
+
